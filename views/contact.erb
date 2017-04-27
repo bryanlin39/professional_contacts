@@ -1,0 +1,48 @@
+<p>First name: <%= @contact.first_name() %></p>
+<p>Last name: <%= @contact.last_name() %></p>
+<p>Job: <%= @contact.job() %></p>
+<p>Company: <%= @contact.company() %></p>
+<% address_count = 0 %>
+<% @contact.addresses.each() do |address| %>
+  <% address_count += 1 %>
+  <p>Address <%= address_count %>: <%= address.street() %>, <%= address.city() %>, <%= address.state() %></p>
+<% end %>
+<% phone_count = 0 %>
+<% @contact.phones.each() do |phone| %>
+  <% phone_count += 1 %>
+  <p>Phone <%= phone_count %>: <%= phone.number() %></p>
+<% end %>
+<% email_count = 0 %>
+<% @contact.emails.each() do |email| %>
+  <% email_count += 1 %>
+  <p>Email <%= email_count %>: <%= email.address() %></p>
+<% end %>
+<form class="float" action='/contacts/<%= @contact.id() %>' method="post">
+  <div class="form-group">
+    <label for="street">Street:</label>
+    <input type="text" name="street">
+  </div>
+  <div class="form-group">
+    <label for="city">City:</label>
+    <input type="text" name="city">
+  </div>
+  <div class="form-group">
+    <label for="state">State:</label>
+    <input type="text" name="state">
+  </div>
+  <button type="submit" name="button">Add Address</button>
+</form>
+<form class="float" action='/contacts/<%= @contact.id() %>' method="post">
+  <div class="form-group">
+    <label for="number">Phone:</label>
+    <input type="text" name="number">
+  </div>
+  <button type="submit" name="button">Add Phone</button>
+</form>
+<form class="float" action='/contacts/<%= @contact.id() %>' method="post">
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" name="email">
+  </div>
+  <button type="submit" name="button">Add Email</button>
+</form>
