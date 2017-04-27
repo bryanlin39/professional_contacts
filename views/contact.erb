@@ -20,29 +20,29 @@
 <form class="float" action='/contacts/<%= @contact.id() %>' method="post">
   <div class="form-group">
     <label for="street">Street:</label>
-    <input type="text" name="street">
+    <input type="text" name="street" required>
   </div>
   <div class="form-group">
     <label for="city">City:</label>
-    <input type="text" name="city">
+    <input type="text" name="city" required>
   </div>
   <div class="form-group">
     <label for="state">State:</label>
-    <input type="text" name="state">
+    <input type="text" name="state" required>
   </div>
   <button type="submit" name="button">Add Address</button>
 </form>
 <form class="float" action='/contacts/<%= @contact.id() %>' method="post">
   <div class="form-group">
     <label for="number">Phone:</label>
-    <input type="text" name="number">
+    <input type="text" name="number" required>
   </div>
   <button type="submit" name="button">Add Phone</button>
 </form>
 <form class="float" action='/contacts/<%= @contact.id() %>' method="post">
   <div class="form-group">
     <label for="email">Email:</label>
-    <input type="text" name="email">
+    <input type="text" name="email" required>
   </div>
   <button type="submit" name="button">Add Email</button>
 </form>

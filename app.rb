@@ -22,6 +22,11 @@ post('/contacts') do
   erb(:contacts)
 end
 
+get('/contacts') do
+  @contacts = Contact.all()
+  erb(:contacts)
+end
+
 get('/contacts/:id') do
   @contact = Contact.find(params[:id])
   erb(:contact)
@@ -29,16 +34,22 @@ end
 
 post('/contacts/:id') do
   @contact = Contact.find(params[:id])
-  new_street = params[:street]
-  new_city = params[:city]
-  new_state = params[:state]
-  new_address = Address.new({:street=> new_street, :city=> new_city, :state=> new_state})
-  @contact.add_address(new_address)
-  new_number = params[:number]
-  new_phone = Phone.new({:number=> new_number})
-  @contact.add_phone(new_phone)
-  new_address = params[:email]
-  new_email = Email.new({:address=> new_address})
-  @contact.add_email(new_email)
+  if (params[:street] != nil) && (params[:city] != nil) && (params[:state] != nil)
+    new_street = params[:street]
+    new_city = params[:city]
+    new_state = params[:state]
+    new_address = Address.new({:street=> new_street, :city=> new_city, :state=> new_state})
+    @contact.add_address(new_address)
+  end
+  if params[:number] != nil
+    new_number = params[:number]
+    new_phone = Phone.new({:number=> new_number})
+    @contact.add_phone(new_phone)
+  end
+  if params[:email] != nil
+    new_email_address = params[:email]
+    new_email = Email.new({:address=> new_email_address})
+    @contact.add_email(new_email)
+  end
   erb(:contact)
 end
